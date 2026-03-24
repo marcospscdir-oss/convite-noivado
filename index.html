@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Jantar de Noivado - Marcos & Karyna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Estilo Global */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f7f3f0; /* Off-white de fundo */
+      color: #333;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    /* Container do Convite */
+    .card {
+      background: white;
+      padding: 0; /* Tiramos o padding para a imagem de banner ocupar tudo */
+      border-radius: 20px;
+      max-width: 450px;
+      margin: 40px auto;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Sombra suave */
+      overflow: hidden; /* Garante que as imagens não saiam do card */
+    }
+
+    /* Imagem de Banner no Topo */
+    .banner-img {
+      width: 100%;
+      height: 200px; /* Altura do banner */
+      object-fit: cover; /* Ajusta a imagem sem distorcer */
+    }
+
+    /* Conteúdo do Card */
+    .card-content {
+      padding: 30px;
+    }
+
+    /* Imagem do Casal (Redonda) */
+    .couple-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-top: -90px; /* Sobe a imagem sobre o banner */
+      object-fit: cover;
+    }
+
+    h1 {
+      color: #b08d57; /* Champagne Gold */
+      font-size: 2em;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-weight: 400;
+      font-size: 1.2em;
+      margin-bottom: 25px;
+    }
+
+    /* Estilo para a seção de detalhes */
+    .detalhes {
+      text-align: left; /* Alinha o texto à esquerda */
+      max-width: 300px;
+      margin: 0 auto;
+      margin-bottom: 30px;
+    }
+
+    .detalhe-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .detalhe-item i {
+      color: #e1b894; /* Rose Gold */
+      font-size: 1.5em;
+      margin-right: 15px;
+      width: 25px; /* Largura fixa para alinhar os ícones */
+      text-align: center;
+    }
+
+    /* Estilo dos Botões */
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* Espaço entre os botões */
+    }
+
+    button {
+      background-color: transparent;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* Botão de Localização (Google Maps) */
+    .btn-mapa {
+      color: #e1b894;
+      border: 2px solid #e1b894;
+    }
+
+    .btn-mapa:hover {
+      background-color: #e1b894;
+      color: white;
+    }
+
+    /* Botão de Confirmação (WhatsApp) */
+    .btn-rsvp {
+      background-color: #e1b894; /* Rose Gold */
+      color: white;
+      border: 2px solid #e1b894;
+      font-weight: 700;
+    }
+
+    .btn-rsvp:hover {
+      background-color: #d1a884;
+      border-color: #d1a884;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" alt="Flores" class="banner-img">
+
+  <div class="card-content">
+    <img src="casal.jpg" alt="Marcos e Karyna" class="couple-img">
+
+    <h1>Jantar de Noivado</h1>
+    <h2>Marcos & Karyna</h2>
+
+    <p>Convidamos você para celebrar este momento tão especial!</p>
+
+    <div class="detalhes">
+      <div class="detalhe-item">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Sábado, 10 de Abril</span>
+      </div>
+      <div class="detalhe-item">
+        <i class="fas fa-clock"></i>
+        <span>A partir das 20:00h</span>
+      </div>
+      <div class="detalhe-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Restaurante Terraço Goumert</span>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <button class="btn-mapa" onclick="abrirMapa()"><i class="fas fa-location-arrow"></i> Ver no Mapa</button>
+      <button class="btn-rsvp" onclick="confirmarWhatsApp()"><i class="fab fa-whatsapp"></i> Confirmar Presença</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Altere aqui para o número de WhatsApp que receberá as confirmações
+  // Formato: 55 + DDD + Número (sem espaços ou traços)
+  const meuNumeroWhatsApp = "5599999999999"; 
+
+  function confirmarWhatsApp() {
+    const mensagem = encodeURIComponent("Olá! Confirmo minha presença no jantar de noivado de Marcos & Karyna! 💍🎉");
+    window.location.href = `https://wa.me/${meuNumeroWhatsApp}?text=${mensagem}`;
+  }
+
+  function abrirMapa() {
+    // Substitua pelo endereço real do local
+    const endereco = "Av. das Nações Unidas, 123 - Centro, Curitiba - PR";
+    const enderecoFormatado = encodeURIComponent(endereco);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${enderecoFormatado}`, '_blank');
+  }
+</script>
+
+</body>
+</html>
