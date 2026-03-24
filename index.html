@@ -8,63 +8,129 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body { font-family: 'Montserrat', sans-serif; background-color: #f7f3f0; color: #333; text-align: center; padding: 20px; margin: 0; }
-    .card { background: white; border-radius: 20px; max-width: 450px; margin: 40px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.05); overflow: hidden; }
+    
+    .card { 
+      background: white; 
+      border-radius: 20px; 
+      max-width: 450px; 
+      margin: 40px auto; 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+      overflow: hidden; 
+    }
+
     .banner-img { width: 100%; height: 200px; object-fit: cover; }
+
     .card-content { padding: 30px; }
     
-    /* AQUI ESTÁ O SEGREDO DA FOTO: */
+    /* FOTO AJUSTADA PARA NÃO CORTAR (CONTAIN) */
     .couple-img { 
-      width: 120px; height: 120px; border-radius: 50%; border: 5px solid white; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: -90px; object-fit: cover;
-      background-color: #eee; /* Fundo cinza caso a foto falhe */
+      width: 140px; 
+      height: 140px; 
+      border-radius: 50%; 
+      border: 5px solid white; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+      margin-top: -100px; 
+      object-fit: contain; 
+      background-color: white; 
     }
 
     h1 { color: #b08d57; font-size: 1.8em; margin: 15px 0 5px; }
     h2 { font-weight: 400; font-size: 1.1em; margin-bottom: 25px; color: #666; }
+
     .detalhes { text-align: left; max-width: 280px; margin: 0 auto 30px; }
     .detalhe-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 0.95em; }
     .detalhe-item i { color: #e1b894; font-size: 1.3em; margin-right: 15px; width: 25px; text-align: center; }
+
     .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; }
-    button { border-radius: 10px; padding: 12px 20px; font-size: 1em; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: 0.3s; width: 100%; max-width: 280px; border: none; }
+    
+    button { 
+      border-radius: 10px; 
+      padding: 12px 20px; 
+      font-size: 1em; 
+      cursor: pointer; 
+      font-family: 'Montserrat', sans-serif; 
+      transition: 0.3s; 
+      width: 100%; 
+      max-width: 280px; 
+      border: none; 
+    }
+
     .btn-mapa { color: #b08d57; border: 2px solid #e1b894; background: white; }
     .btn-rsvp { background-color: #e1b894; color: white; font-weight: 700; }
     button:hover { opacity: 0.8; transform: translateY(-2px); }
+
+    /* PLAYER DE MÚSICA */
+    #music-container { 
+      margin-top: 25px; 
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+    audio { height: 30px; width: 220px; outline: none; }
   </style>
 </head>
 <body>
 
 <div class="card">
   <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" class="banner-img">
+  
   <div class="card-content">
-    
     <img src="foto.jpg" alt="Marcos e Karyna" class="couple-img">
 
     <h1>Jantar de Noivado</h1>
     <h2>Marcos & Karyna</h2>
-    <p style="font-size: 0.9em; line-height: 1.5;">Convidamos você para celebrar este momento tão especial!</p>
+    <p style="font-size: 0.95em; line-height: 1.6; color: #555;">
+      Convidamos você para celebrar este momento tão especial e dar início a nossa nova jornada!
+    </p>
 
     <div class="detalhes">
-      <div class="detalhe-item"><i class="fas fa-calendar-alt"></i><span>Sábado, 28/03/2026</span></div>
-      <div class="detalhe-item"><i class="fas fa-clock"></i><span>A partir das 20:00h</span></div>
-      <div class="detalhe-item"><i class="fas fa-map-marker-alt"></i><span>Casa da Vovó Diná</span></div>
+      <div class="detalhe-item">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Sábado, 28/03/2026</span>
+      </div>
+      <div class="detalhe-item">
+        <i class="fas fa-clock"></i>
+        <span>A partir das 20:00h</span>
+      </div>
+      <div class="detalhe-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Casa da Vovó Diná</span>
+      </div>
     </div>
 
     <div class="btn-container">
-      <button class="btn-mapa" onclick="window.open('http://googleusercontent.com/maps.google.com/5', '_blank')">
+      <button class="btn-mapa" onclick="window.open('http://googleusercontent.com/maps.google.com/7', '_blank')">
         <i class="fas fa-location-arrow"></i> Ver no Mapa
       </button>
+      
       <button class="btn-rsvp" onclick="confirmar()">
         <i class="fab fa-whatsapp"></i> Confirmar Presença
       </button>
+    </div>
+
+    <div id="music-container">
+      <p style="font-size: 11px; margin-bottom: 8px; color: #b08d57; font-weight: bold;">🎵 Toque para ouvir nossa música</p>
+      <audio id="minhaMusica" controls loop>
+        <source src="iris.mp3" type="audio/mpeg">
+        Seu navegador não suporta o áudio.
+      </audio>
     </div>
   </div>
 </div>
 
 <script>
+  // Função para confirmar presença no seu WhatsApp real
   function confirmar() {
-    const msg = encodeURIComponent("Olá! Confirmo minha presença no jantar de noivado de Marcos & Karyna! 💍");
-    window.location.href = `https://wa.me/5599999999999?text=${msg}`; // Troque pelo seu número!
+    const meuNumero = "5562993472158"; 
+    const texto = "Olá! Confirmo minha presença no jantar de noivado de Marcos & Karyna! 💍🎉";
+    const mensagem = encodeURIComponent(texto);
+    window.location.href = `https://wa.me/${meuNumero}?text=${mensagem}`;
   }
+
+  // Tenta tocar a música ao primeiro clique na tela (melhorando a experiência)
+  document.addEventListener('click', function() {
+      const audio = document.getElementById('minhaMusica');
+      audio.play();
+  }, { once: true });
 </script>
 
 </body>
