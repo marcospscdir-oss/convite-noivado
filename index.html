@@ -7,112 +7,125 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* FUNDO COM SEUS RAMOS DE FLORES */
     body { 
       font-family: 'Montserrat', sans-serif; 
-      margin: 0; padding: 0; overflow-x: hidden;
+      margin: 0; padding: 0; 
       background-image: url('fundo.jpg'); 
       background-size: cover; background-position: center; background-attachment: fixed;
     }
 
-    /* TELA DO ENVELOPE (INICIAL) */
+    /* TELA DA CARTA (ENVELOPE) */
     #envelope-layer {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(247, 243, 240, 0.9); /* Fundo levemente transparente */
+      background-color: #f7f3f0;
+      background-image: url('fundo.jpg'); background-size: cover;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 999; transition: all 1s ease;
+      z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s;
     }
-
-    .envelope-icon { font-size: 80px; color: #b08d57; margin-bottom: 20px; animation: bounce 2s infinite; }
+    .envelope-icon { font-size: 70px; color: #b08d57; margin-bottom: 20px; }
     .btn-abrir { 
-      background: #b08d57; color: white; border: none; padding: 15px 40px; 
+      background: #b08d57; color: white; border: none; padding: 15px 35px; 
       border-radius: 50px; font-weight: bold; cursor: pointer; font-family: 'Montserrat';
-      text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 4px 15px rgba(176, 141, 87, 0.3);
+      text-transform: uppercase; letter-spacing: 2px;
     }
+    .hidden-envelope { opacity: 0; visibility: hidden; }
 
-    /* ESTILO DO CARD (ESCONDIDO NO INÍCIO) */
-    #convite-container { opacity: 0; transform: translateY(50px); transition: all 1s ease; padding: 20px; display: none; }
-    
+    /* CARD DO CONVITE */
     .card { background: white; border-radius: 20px; max-width: 450px; margin: 40px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden; }
     .banner-img { width: 100%; height: 180px; background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; }
     .card-content { padding: 30px; }
+    
     .couple-photo-container {
       width: 150px; height: 150px; border-radius: 50%; border: 5px solid white;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: -100px auto 20px;
       background-image: url('foto.jpg'); background-size: cover; background-position: center; background-color: #fff;
     }
 
-    h1 { color: #b08d57; font-size: 1.8em; margin: 10px 0 5px; text-transform: uppercase; }
+    h1 { color: #b08d57; font-size: 1.8em; margin: 10px 0 5px; text-transform: uppercase; letter-spacing: 1px; }
     h2 { font-weight: 400; font-size: 1.2em; margin-bottom: 20px; color: #666; }
-    .poesia { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9em; line-height: 1.6; color: #666; margin-bottom: 30px; padding: 0 15px; }
+    .convite-principal { font-size: 1em; color: #333; margin-bottom: 15px; font-weight: 700; text-align: center; }
+
+    /* SEU TEXTO POÉTICO ORIGINAL */
+    .poesia {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9em;
+      line-height: 1.6;
+      color: #666;
+      margin-bottom: 30px;
+      padding: 0 15px;
+      text-align: center;
+    }
+
     .detalhes { background-color: #fdfaf7; padding: 20px; border-radius: 15px; text-align: left; max-width: 280px; margin: 0 auto 30px; }
     .detalhe-item { display: flex; align-items: center; margin-bottom: 12px; font-size: 0.9em; }
     .detalhe-item i { color: #e1b894; font-size: 1.2em; margin-right: 15px; width: 25px; text-align: center; }
+    
     .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; }
-    .btn-mapa { color: #b08d57; border: 2px solid #e1b894; background: white; border-radius: 50px; padding: 14px; width: 100%; max-width: 260px; cursor: pointer; font-weight: bold; }
-    .btn-rsvp { background-color: #e1b894; color: white; border-radius: 50px; padding: 14px; width: 100%; max-width: 260px; cursor: pointer; border: none; font-weight: bold; }
-
-    /* ANIMAÇÃO DO ÍCONE */
-    @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+    .btn-mapa { color: #b08d57; border: 2px solid #e1b894; background: white; border-radius: 50px; padding: 14px; width: 100%; max-width: 260px; cursor: pointer; font-weight: bold; font-family: 'Montserrat'; text-transform: uppercase; }
+    .btn-rsvp { background-color: #e1b894; color: white; border-radius: 50px; padding: 14px; width: 100%; max-width: 260px; cursor: pointer; border: none; font-weight: bold; font-family: 'Montserrat'; text-transform: uppercase; }
+    
+    #music-info { margin-top: 25px; font-size: 10px; color: #b08d57; font-weight: bold; }
   </style>
 </head>
 <body>
 
   <div id="envelope-layer">
     <div class="envelope-icon"><i class="fas fa-envelope-open-text"></i></div>
-    <p style="font-family: 'Playfair Display', serif; font-style: italic; color: #8d6e43; margin-bottom: 30px;">Um convite especial para você...</p>
+    <p style="font-family: 'Playfair Display', serif; font-style: italic; color: #8d6e43; margin-bottom: 25px;">Um convite especial para você...</p>
     <button class="btn-abrir" onclick="abrirCarta()">Abrir Convite</button>
   </div>
 
-  <div id="convite-container">
-    <div class="card">
-      <div class="banner-img"></div>
-      <div class="card-content">
-        <div class="couple-photo-container"></div>
-        <h1>Jantar de Noivado</h1>
-        <h2>Marcos & Karyna</h2>
-        <p><strong>Convidamos você para celebrar este momento tão especial conosco!</strong></p>
-        <div class="poesia">
-          "Há encontros que o tempo guarda, e há momentos que marcam o início de uma nova eternidade... [resto do seu texto]"
-        </div>
-        <div class="detalhes">
-          <div class="detalhe-item"><i class="fas fa-calendar-alt"></i><span>Sábado, 28/03/2026</span></div>
-          <div class="detalhe-item"><i class="fas fa-clock"></i><span>A partir das 20:00h</span></div>
-          <div class="detalhe-item"><i class="fas fa-map-marker-alt"></i><span>Casa da Vovó Diná</span></div>
-        </div>
-        <div class="btn-container">
-          <button class="btn-mapa" onclick="window.open('https://maps.app.goo.gl/ZyrerrXNJNJUDMXMA?g_st=iw', '_blank')">Ver no Mapa</button>
-          <button class="btn-rsvp" onclick="confirmar()">Confirmar Presença</button>
-        </div>
+  <div class="card">
+    <div class="banner-img"></div>
+    <div class="card-content">
+      <div class="couple-photo-container"></div>
+      <h1>Jantar de Noivado</h1>
+      <h2>Marcos & Karyna</h2>
+      
+      <p class="convite-principal">Convidamos você para celebrar este momento tão especial conosco!</p>
+
+      <div class="poesia">
+        "Há encontros que o tempo guarda, e há momentos que marcam o início de uma nova eternidade. 
+        Entre sonhos que se entrelaçam e caminhos que agora seguem como um só, convidamos você a estar presente em uma noite que celebra não apenas um compromisso, mas a escolha diária de caminhar juntos. 
+        Nosso noivado é mais que um anúncio — é a promessa silenciosa de um futuro construído com amor, respeito e cumplicidade. 
+        Será uma honra compartilhar este instante com você."
       </div>
+
+      <div class="detalhes">
+        <div class="detalhe-item"><i class="fas fa-calendar-alt"></i><span>Sábado, 28/03/2026</span></div>
+        <div class="detalhe-item"><i class="fas fa-clock"></i><span>A partir das 20:00h</span></div>
+        <div class="detalhe-item"><i class="fas fa-map-marker-alt"></i><span>Casa da Vovó Diná</span></div>
+      </div>
+
+      <div class="btn-container">
+        <button class="btn-mapa" onclick="window.open('https://maps.app.goo.gl/ZyrerrXNJNJUdMXMA?g_st=iw', '_blank')">
+          <i class="fas fa-location-arrow"></i> Ver no Mapa
+        </button>
+        <button class="btn-rsvp" onclick="confirmar()">
+          <i class="fab fa-whatsapp"></i> Confirmar Presença
+        </button>
+      </div>
+
+      <div id="music-info">🎵 TOCANDO: IRIS - GOO GOO DOLLS</div>
+      <audio id="audio-convite" loop><source src="Iris.mp3" type="audio/mpeg"></audio>
     </div>
-    <audio id="audio" loop><source src="Iris.mp3" type="audio/mpeg"></audio>
   </div>
 
   <script>
     function abrirCarta() {
-      // Toca a música
-      const audio = document.getElementById('audio');
-      audio.play();
+      const musica = document.getElementById('audio-convite');
+      musica.play().catch(e => console.log("Erro ao tocar áudio"));
 
-      // Esconde o envelope
       const envelope = document.getElementById('envelope-layer');
-      envelope.style.opacity = '0';
-      setTimeout(() => { 
-        envelope.style.display = 'none'; 
-        // Mostra o convite com animação
-        const convite = document.getElementById('convite-container');
-        convite.style.display = 'block';
-        setTimeout(() => {
-          convite.style.opacity = '1';
-          convite.style.transform = 'translateY(0)';
-        }, 100);
-      }, 1000);
+      envelope.classList.add('hidden-envelope');
     }
 
     function confirmar() {
-      window.location.href = "https://wa.me/5562993472158?text=Confirmo%20presença!";
+      const msg = encodeURIComponent("Olá! Confirmo minha presença no jantar de noivado de Marcos & Karyna! 💍🎉");
+      window.location.href = `https://wa.me/5562993472158?text=${msg}`;
     }
   </script>
+
 </body>
 </html>
